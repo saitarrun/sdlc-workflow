@@ -14,11 +14,11 @@ const { AgentCoordinator, SharedContext, CollaborationLog } = require('./collabo
 // Phase and dependency definitions
 const PHASES = [
   { name: 'Planning', agents: ['product-manager', 'business-analyst', 'software-architect', 'security-architect'] },
-  { name: 'Design', agents: ['ux-researcher', 'ui-ux-designer'] },
-  { name: 'Development', agents: ['frontend-engineer', 'backend-engineer', 'database-engineer', 'mobile-developer'] },
+  { name: 'Design', agents: ['ux-researcher', 'ui-ux-designer', 'accessibility-engineer'] },
+  { name: 'Development', agents: ['frontend-engineer', 'backend-engineer', 'database-engineer', 'mobile-developer', 'fullstack-engineer'] },
   { name: 'Testing & Security', agents: ['qa-manual-tester', 'automation-qa-engineer', 'appsec-engineer', 'penetration-tester'] },
-  { name: 'Deployment', agents: ['devops-engineer', 'cloud-engineer'] },
-  { name: 'Operations', agents: ['sre-engineer', 'secops-analyst', 'data-engineer'] },
+  { name: 'Deployment', agents: ['devops-engineer', 'cloud-engineer', 'sre-engineer'] },
+  { name: 'Operations & Support', agents: ['secops-analyst', 'data-engineer', 'engineering-manager', 'tech-lead', 'release-manager', 'performance-engineer', 'technical-writer'] },
 ];
 
 const DEPENDENCIES = {
@@ -28,10 +28,12 @@ const DEPENDENCIES = {
   'security-architect': ['software-architect'],
   'ux-researcher': ['business-analyst'],
   'ui-ux-designer': ['ux-researcher'],
+  'accessibility-engineer': ['ux-researcher'],
   'frontend-engineer': ['ui-ux-designer'],
   'backend-engineer': ['software-architect'],
   'database-engineer': ['software-architect'],
   'mobile-developer': ['ui-ux-designer'],
+  'fullstack-engineer': ['ui-ux-designer', 'software-architect'],
   'qa-manual-tester': ['frontend-engineer', 'backend-engineer'],
   'automation-qa-engineer': ['qa-manual-tester'],
   'appsec-engineer': ['backend-engineer'],
@@ -41,6 +43,11 @@ const DEPENDENCIES = {
   'sre-engineer': ['cloud-engineer'],
   'secops-analyst': ['sre-engineer'],
   'data-engineer': ['backend-engineer'],
+  'engineering-manager': ['sre-engineer'],
+  'tech-lead': ['sre-engineer'],
+  'release-manager': ['devops-engineer'],
+  'performance-engineer': ['backend-engineer'],
+  'technical-writer': ['frontend-engineer', 'backend-engineer'],
 };
 
 // CLI args
