@@ -1,6 +1,6 @@
 # SDLC Workflow Plugin
 
-A comprehensive Claude Code plugin that automates the complete Software Development Lifecycle with 20 role-specific agents, 15 knowledge skills, and 9 commands, all guided by principles from:
+A comprehensive Claude Code plugin that automates the complete Software Development Lifecycle with 20 role-specific agents, 29 knowledge skills, and 9 commands, all guided by principles from:
 
 - **Software Engineering at Google** — QUANTS, INVEST, Critique/LGTM, Testing Pyramid, CI/CD
 - **Architecture: The Hard Parts** — ADR, coupling/cohesion, fitness functions, service design
@@ -58,24 +58,51 @@ A comprehensive Claude Code plugin that automates the complete Software Developm
 | `/sdlc-ops` | 6 | SLOs + security monitoring + data pipelines |
 | `/sdlc-review` | Any | SE@Google Critique-style PR review with gh pr comments |
 
-### 15 Knowledge Skills
+### 29 Knowledge Skills
 
-Skills inject methodology into agents (no tools/model — pure knowledge context):
+Skills inject methodology into agents (no tools/model — pure knowledge context). Organized by phase + utilities:
+
+**Phase 1 — Planning & Requirements**
 - `skill-requirements` — INVEST criteria, QUANTS framework
-- `skill-architecture` — ADR format, coupling/cohesion, fitness functions
-- `skill-threat-modeling` — STRIDE, PASTA, attack surface mapping
+- `skill-prd-synthesis` — Convert conversation context into PRD
+- `skill-plan-breakdown` — Break plan into vertical-slice issues
+- `skill-issue-triage` — Triage workflow for bugs/features
+
+**Phase 2 — Design & Prototyping**
 - `skill-ux-design` — User journeys, personas, wireframing
+- `skill-prototype` — Throwaway code to validate design assumptions
+
+**Phase 3 — Development & Coding**
 - `skill-code-standards` — Clean Code, SOLID, DRY, naming
+- `skill-architecture` — ADR format, coupling/cohesion, fitness functions
+- `skill-architecture-refactor` — Find deepening opportunities, improve testability
+- `skill-zoom-out` — Understand code at higher abstraction level
+
+**Phase 4 — Testing & Security Auditing**
 - `skill-code-quality` — Linting, testing pyramid, SAST/SCA, security standards, CI/CD gates
 - `skill-code-review` — SE@Google Critique taxonomy, LGTM culture
 - `skill-testing` — Testing Pyramid, F.I.R.S.T., test doubles
+- `skill-tdd` — Test-driven development: red-green-refactor loop
+- `skill-diagnose` — Disciplined bug diagnosis, reproduce → hypothesise → instrument → fix
+- `skill-threat-modeling` — STRIDE, PASTA, attack surface mapping
 - `skill-security-audit` — OWASP Top 10, CWE taint analysis
+
+**Phase 5 — Infrastructure & Deployment**
 - `skill-cicd` — Hermetic builds, presubmit gates, trunk-based dev
+- `skill-precommit-hooks` — Pre-commit enforcement for quality gates
 - `skill-cloud-infra` — Terraform, IaC patterns, cloud services
-- `skill-documentation` — Audience-first writing, docs-as-code
+
+**Phase 6 — Operations & Maintenance**
 - `skill-ops-sre` — SLO/SLI, QUANTS, error budgets, toil measurement
-- `skill-caveman` — Ultra-compressed communication, 75% token reduction, full technical accuracy
-- `skill-grill-me` — Relentless design review, decision tree interrogation, shared understanding
+- `skill-documentation` — Audience-first writing, docs-as-code
+
+**Utilities & Meta**
+- `skill-caveman` — Ultra-compressed communication, 75% token reduction
+- `skill-grill-me` — Relentless design review, decision tree interrogation
+- `skill-handoff` — Compact session for agent handoff
+- `skill-teach` — Teach skill/concept over multiple sessions
+- `skill-write-skill` — Create new agent skills
+- `skill-git-safety` — Git destructive operation guards
 
 ## Installation
 
