@@ -1,7 +1,7 @@
 {
   "name": "sdlc-workflow",
   "version": "1.0.0",
-  "description": "Complete Software Development Lifecycle plugin for Claude Code: 20 agents, 29 skills, 9 commands. Includes mattpocock skill integrations (PRD synthesis, TDD, diagnose, prototype, architecture refactor) for planning → design → development → testing → deployment → operations.",
+  "description": "Complete Software Development Lifecycle plugin for Claude Code: 20 agents, 28 skills, 9 commands. Includes mattpocock skill integrations (PRD synthesis, TDD, diagnose, prototype, architecture refactor) for planning → design → development → testing → deployment → operations.",
   "keywords": [
     "claude-code",
     "plugin",
