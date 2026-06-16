@@ -343,21 +343,30 @@
                 const row = document.createElement('tr');
                 row.className = 'group hover:bg-surface-variant/30 transition-colors';
                 row.setAttribute('data-phase', phase);
+                row.setAttribute('data-agent', agentName);
+
+                const agent = agentsCache[agentName];
+                const status = agent?.status || 'available';
+                const statusDisplay = status === 'available' ? 'AVAILABLE' : status.toUpperCase();
+                const duration = agent?.duration_ms ? `${(agent.duration_ms / 1000).toFixed(0)}s` : '00:00:00';
+                const startTime = agent?.started_at ? new Date(agent.started_at).toLocaleString() : '--:--:--';
+                const statusColor = statusColors[status]?.color || 'text-outline-variant';
+                const dotColor = status === 'working' ? 'bg-primary-fixed pulse-active' : 'bg-outline';
 
                 row.innerHTML = `
                     <td class="px-6 py-5 font-bold text-on-surface">#${agentName.substring(0, 8).toUpperCase()}</td>
                     <td class="px-6 py-5">
                         <div class="flex items-center gap-2">
-                            <span class="w-2 h-2 rounded-full bg-outline"></span>
-                            <span class="text-outline-variant">WAITING</span>
+                            <span class="w-2 h-2 rounded-full ${dotColor}"></span>
+                            <span class="${statusColor}">${statusDisplay}</span>
                         </div>
                     </td>
                     <td class="px-6 py-5 text-on-surface-variant">${phase}</td>
-                    <td class="px-6 py-5 text-on-surface-variant">--:--:--</td>
-                    <td class="px-6 py-5 text-on-surface">00:00:00</td>
+                    <td class="px-6 py-5 text-on-surface-variant">${startTime}</td>
+                    <td class="px-6 py-5 text-on-surface">${duration}</td>
                     <td class="px-6 py-5">
                         <div class="bg-surface px-3 py-2 border border-outline-variant text-[10px] text-on-surface-variant/80 font-mono truncate">
-                            [WAITING] ${agentName}
+                            [${statusDisplay}] ${agentName}
                         </div>
                     </td>
                     <td class="px-6 py-5">
@@ -485,10 +494,8 @@
             agentsCache = agents;
 
             const runningTbody = document.getElementById('running-agents-table');
-            const idleTbody = document.getElementById('idle-agents-table');
             const completedTbody = document.getElementById('completed-agents-table');
             runningTbody.innerHTML = '';
-            idleTbody.innerHTML = '';
             completedTbody.innerHTML = '';
 
             let queued = 0, running = 0, complete = 0, failed = 0;
@@ -535,17 +542,16 @@
                     completedTbody.appendChild(row);
                 } else if (status === 'working') {
                     runningTbody.appendChild(row);
-                } else {
-                    // waiting or blocked = idle
-                    idleTbody.appendChild(row);
                 }
 
                 row.querySelector('.log-btn').addEventListener('click', () => showAgentLogs(name));
             });
 
+            // Sync Available Agents with current run status
+            populateIdleAgents();
+
             // Update counts
             document.getElementById('running-count').textContent = `(${running})`;
-            document.getElementById('idle-count').textContent = `(${queued + failed})`;
             document.getElementById('completed-count').textContent = `(${complete})`;
 
             document.getElementById('metric-queued').textContent = queued;
