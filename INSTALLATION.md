@@ -7,7 +7,7 @@
 **One-command installation from npm registry:**
 
 ```bash
-sudo npm install -g sdlc-workflow
+sudo npm install -g @saitarrun/sdlc-workflow
 sdlc-workflow install
 ```
 
@@ -15,7 +15,7 @@ Then **restart Claude Code** and you're ready to use `/sdlc-plan`, `/sdlc-design
 
 **To update later:**
 ```bash
-sudo npm install -g sdlc-workflow@latest
+sudo npm install -g @saitarrun/sdlc-workflow@latest
 sdlc-workflow install
 ```
 
@@ -152,7 +152,7 @@ The `npm run install-local` command:
 ### If You Installed Globally
 
 ```bash
-sudo npm uninstall -g sdlc-workflow
+sudo npm uninstall -g @saitarrun/sdlc-workflow
 ```
 
 This removes the global CLI and plugin files.
