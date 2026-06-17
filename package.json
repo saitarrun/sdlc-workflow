@@ -1,6 +1,6 @@
 {
   "name": "sdlc-ai-workflow",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Complete SDLC Workflow Plugin for Claude Code: 26 agents, 43 skills, 14 commands, 6 phases. Covers planning → design → development → testing → deployment → operations, with industry-standard SDLC best practices embedded in every agent.",
   "keywords": [
     "claude-code",
