@@ -42,6 +42,31 @@ sudo npm install -g sdlc-ai-workflow@latest
 sdlc-ai-workflow install
 ```
 
+---
+
+## ⚠️ Breaking Changes in v1.3.0
+
+### Dashboard Removed
+- **Removed**: `npm run ui` command (web-based dashboard)
+- **Removed**: `npm run init-dashboard` command
+- **What to do**: Monitor progress in Claude Code terminal output instead. View artifacts in `.sdlc/run-<timestamp>/` directory.
+- **Migration**: See [MIGRATION.md](./MIGRATION.md) for detailed upgrade instructions.
+
+### Phase 1: Mandatory Grill-Me Interview
+- **What changed**: Phase 1 now REQUIRES an interactive grill-me interview before any agent work starts
+- **What to do**: When you run `/sdlc-plan "feature"`, Product Manager will ask 32 questions across 4 phases (problem, users, constraints, success). Answer honestly and specifically.
+- **Why**: User input (grill-me) is the single source of truth for all Phase 1 artifacts (requirements, architecture, threat model)
+- **Timeline**: Typically 15-45 minutes depending on feature complexity
+- **Cannot skip**: Grill-me is mandatory. Product Manager will not mark grill-complete until all 4 phases are resolved with your confirmation.
+
+### Upstream from v1.2.x?
+1. Update plugin: `sudo npm install -g sdlc-ai-workflow@latest`
+2. Read [MIGRATION.md](./MIGRATION.md) for step-by-step upgrade guide
+3. Remove any scripts/CI using `npm run ui` or `npm run init-dashboard`
+4. Try Phase 1: `/sdlc-plan "your feature"` and answer the grill-me questions
+
+---
+
 ### Option B: Install from Source
 
 ```bash
